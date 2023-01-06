@@ -24,33 +24,11 @@ const Admin: NextPage = () => {
           <div className="flex flex-col px-20 py-5">
             <h1 className="font-grotesk text-4xl">Admin Page</h1>
           </div>
-          <AdminData />
+          <AdminLayout
+           />
         </main>
       </>
     );
   };
   
 export default Admin;
-
-const AdminData: React.FC = () => {
-    const { data: sessionData } = useSession();
-  
-    const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
-      undefined, // no input
-      { enabled: sessionData?.user !== undefined },
-    );
-
-    // if (!sessionData)
-
-    
-    return (
-      <div className="flex flex-col items-center justify-center gap-4">
-        <p className="text-center text-2xl text-black">
-          {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-          {sessionData && <AdminLayout/>}
-          {secretMessage && <span> - {secretMessage}</span>}
-        </p>
-      </div>
-    );
-  };
-  

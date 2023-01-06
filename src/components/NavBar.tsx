@@ -2,7 +2,9 @@ import Link from 'next/link'
 import AdminAuth from './AdminAuth'
 
 const NavBar: React.FC = () => {
-    return (
+
+  
+  return (
       <div className="container flex col-auto min-w-full">
         <div className="container flex px-10 py-10">
           <Link
