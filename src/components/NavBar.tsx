@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import AdminAuth from './AdminAuth'
+import NavLogIn from './NavLogIn'
 
 const NavBar: React.FC = () => {
-
   
   return (
       <div className="container flex col-auto min-w-full">
@@ -30,7 +29,7 @@ const NavBar: React.FC = () => {
           </Link>
         </div>
         <div className="container flex justify-end">
-          <AdminAuth/>
+          <NavLogIn />
         </div>
       </div>
     )

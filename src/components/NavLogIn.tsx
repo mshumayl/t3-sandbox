@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 
-const OldAuth: React.FC = () => {
+const NavLogIn: React.FC = () => {
     const { data: sessionData } = useSession();
   
     const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
@@ -25,4 +25,4 @@ const OldAuth: React.FC = () => {
     );
   };
 
-export default OldAuth
+export default NavLogIn
