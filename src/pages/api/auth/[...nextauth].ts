@@ -11,9 +11,12 @@ import { prisma } from "../../../server/db/client";
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-    session({ session, user }) {
-      if (session.user) {
+    async session({ session, token, user }) {   // https://next-auth.js.org/tutorials/role-based-login-strategy
+      if (session.user) {                       // https://stackoverflow.com/questions/73279092/type-issue-when-adding-roles-to-nextauth-js-with-google-provider
         session.user.id = user.id;
+        if (session.user.role) {
+          session.user.role = token.role;
+        }
       }
       return session;
     },
