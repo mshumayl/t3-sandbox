@@ -6,13 +6,15 @@ import AdminStuffOne from './AdminStuffOne';
 
 const AdminLayout: React.FC = () => {
 
-    const { data: sessionData } = useSession();
+    const { data: session } = useSession();
   
+    console.log(session)
+
     return (
       <>
         <div className="container font-grotesk flex-row col-auto px-10 py-10">
-          {sessionData ?
-            (sessionData.user?.role === "user" ?  
+          {session ?
+            (session.user?.role !== "user" ?  
             <div>
                 <div className="container flex-row text-3xl my-5">
                     Exclusive admin stuff

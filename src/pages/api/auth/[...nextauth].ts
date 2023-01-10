@@ -8,15 +8,20 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db/client";
 
+// const userRole = async (parent: any, args: any, ctx: any) => {
+//   const user = await ctx.prisma.user.findOne({ where: { id: parent.id } });
+//   console.log(user)
+//   return user.role;
+// };
+
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
     async session({ session, token, user }) {   // https://next-auth.js.org/tutorials/role-based-login-strategy
+      const databaseUser = await prisma.user.findUnique({ where: { id: user.id } });
       if (session.user) {                       // https://stackoverflow.com/questions/73279092/type-issue-when-adding-roles-to-nextauth-js-with-google-provider
         session.user.id = user.id;
-        if (session.user.role) {
-          session.user.role = token.role;
-        }
+        session.user.role = databaseUser?.role;
       }
       return session;
     },
