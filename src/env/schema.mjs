@@ -2,7 +2,7 @@
 import { z } from "zod";
 
 /**
- * Specify your server-side environment variables schema here.
+ * Specify your server-side environment variables schema here. This includes env vars for auth providers.
  * This way you can ensure the app isn't built with invalid env vars.
  */
 export const serverSchema = z.object({
@@ -21,6 +21,10 @@ export const serverSchema = z.object({
   ),
   DISCORD_CLIENT_ID: z.string(),
   DISCORD_CLIENT_SECRET: z.string(),
+  GITHUB_CLIENT_ID: z.string(),
+  GITHUB_CLIENT_SECRET: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
 });
 
 /**

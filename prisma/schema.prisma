@@ -30,6 +30,7 @@ model Account {
   refresh_token     String? // @db.Text
   access_token      String? // @db.Text
   expires_at        Int?
+  refresh_token_expires_in  Int? // Needed by GitHub auth provider
   token_type        String?
   scope             String?
   id_token          String? // @db.Text
@@ -53,6 +54,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          String @default("user") // For role-based authorization
   accounts      Account[]
   sessions      Session[]
 }
